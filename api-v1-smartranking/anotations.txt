@@ -24,3 +24,6 @@ o Imports: Lista de modules necessários para uso no module corrente.
 commands:
  -nest g module jogadores
  -nest g controller jogadores
+ -nest g service jogadores
+
+- yarn add uuid
