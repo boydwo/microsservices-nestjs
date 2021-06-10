@@ -27,3 +27,5 @@ commands:
  -nest g service jogadores
 
 - yarn add uuid
+
+-yarn add  @nestjs/mongoose mongoose
