@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   Post,
-  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -12,6 +11,9 @@ import { CriarJogadorDto } from './dtos/criar-jogador.dto';
 import { JogadoresService } from './jogadores.service';
 import { Jogador } from './interfaces/jogador.interface';
 import { JogadoresValidacaoParametrosPipe } from './pipes/jogadores-validacao-aparametros.pipe';
+import { Param } from '@nestjs/common';
+import { Put } from '@nestjs/common';
+import { AtualizarJogadorDto } from './dtos/atualizar-jogador.dto';
 
 @Controller('api/v1/jogadores')
 export class JogadoresController {
@@ -19,11 +21,25 @@ export class JogadoresController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async criarAtualizarJogador(
+  async criarJogador(
     @Body()
     criarJogadorDto: CriarJogadorDto,
   ) {
-    await this.jogadoresService.criarAtulizarJogador(criarJogadorDto);
+    await this.jogadoresService.criarJogador(criarJogadorDto);
+
+    return JSON.stringify({
+      status: 'ok',
+    });
+  }
+
+  @Put('/:_id')
+  @UsePipes(ValidationPipe)
+  async atualizarJogador(
+    @Body()
+    atualizarJogadorDto: AtualizarJogadorDto,
+    @Param('_id', JogadoresValidacaoParametrosPipe) _id: string,
+  ): Promise<string> {
+    await this.jogadoresService.atualizarJogador(_id, atualizarJogadorDto);
 
     return JSON.stringify({
       status: 'ok',
@@ -31,20 +47,21 @@ export class JogadoresController {
   }
 
   @Get()
-  async consultarJogadores(
-    @Query('email', JogadoresValidacaoParametrosPipe) email: string,
-  ): Promise<Jogador | Jogador[]> {
-    if (email) {
-      return await this.jogadoresService.consultarJogadoresPeloEmail(email);
-    } else {
-      return await this.jogadoresService.consultarTodosJogadores();
-    }
+  async consultarJogadores(): Promise<Jogador[]> {
+    return await this.jogadoresService.consultarTodosJogadores();
   }
 
-  @Delete()
+  @Get('/:_id')
+  async consultarJogadorPeloId(
+    @Param('_id', JogadoresValidacaoParametrosPipe) _id: string,
+  ): Promise<Jogador> {
+    return await this.jogadoresService.consultarJogadorPeloId(_id);
+  }
+
+  @Delete('/:_id')
   async deletarJogador(
-    @Query('email', JogadoresValidacaoParametrosPipe) email: string,
+    @Param('_id', JogadoresValidacaoParametrosPipe) _id: string,
   ): Promise<void> {
-    await this.jogadoresService.deletarJogador(email);
+    await this.jogadoresService.deletarJogador(_id);
   }
 }
