@@ -31,3 +31,5 @@ commands:
 -yarn add  @nestjs/mongoose mongoose
 
 -yarn add class-validator class-transformer
+
+-nest g module categorias
