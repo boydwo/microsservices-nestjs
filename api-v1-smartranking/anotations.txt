@@ -33,3 +33,5 @@ commands:
 -yarn add class-validator class-transformer
 
 -nest g module categorias
+
+yarn add moment-timezone
