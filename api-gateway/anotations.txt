@@ -1,0 +1,7 @@
+yarn add @nestjs/microsservices
+
+yarn add amqplib amqp-connection-manager
+
+yarn add moment-timezone
+
+yarn add class-validator class-transformer
