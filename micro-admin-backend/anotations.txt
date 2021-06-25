@@ -1,0 +1,7 @@
+yarn add @nestjs/microservices
+
+yarn add amqplib amqp-connection-manager
+
+yarn add install @nestjs/mongoose mongoose
+
+yarn add @types/mongoose -D

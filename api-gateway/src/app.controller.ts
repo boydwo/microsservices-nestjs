@@ -15,7 +15,7 @@ export class AppController {
     this.clientAdminBackend = ClientProxyFactory.create({
       transport: Transport.RMQ,
       options: {
-        urls: ['ampq://user:bitnami@localhost:5672/smartranking'],
+        urls: ['amqp://user:bitnami@localhost:5672/smartranking'],
         queue: 'admin-backend',
       },
     });
