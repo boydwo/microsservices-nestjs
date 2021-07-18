@@ -5,3 +5,9 @@ yarn add amqplib amqp-connection-manager
 yarn add moment-timezone
 
 yarn add class-validator class-transformer
+
+
+yarn add aws-sdk
+
+
+yarn add @nestjs/config // environment variables
