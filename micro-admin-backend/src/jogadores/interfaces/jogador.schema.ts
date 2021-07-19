@@ -9,6 +9,7 @@ export const JogadorSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    categoria: { type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' },
     nome: String,
     ranking: String,
     posicaoRanking: Number,
