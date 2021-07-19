@@ -5,6 +5,7 @@ import { ProxyRMQModule } from './proxyrmq/proxyrmq.module';
 import { JogadoresModule } from './jogadores/jogadores.module';
 import { AwsModule } from './aws/aws.module';
 import { ConfigModule } from '@nestjs/config';
+import { DesafiosModule } from './desafios/desafios.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ConfigModule } from '@nestjs/config';
     JogadoresModule,
     AwsModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    DesafiosModule,
   ],
   controllers: [],
   providers: [ClientProxySmartRanking],
