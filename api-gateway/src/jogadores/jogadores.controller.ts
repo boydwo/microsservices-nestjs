@@ -97,11 +97,13 @@ export class JogadoresController {
       urlFotoJogador: urlFotoJogador.url,
     };
 
-    this.clientAdminBackend.emit('atulizar-jogador', {
+    await this.clientAdminBackend.emit('atualizar-jogador', {
       id: _id,
       jogador: atualizarJogadorDto,
     });
 
-    return this.clientAdminBackend.send('consultar-jogadores', _id);
+    return await this.clientAdminBackend
+      .send('consultar-jogadores', _id)
+      .toPromise();
   }
 }

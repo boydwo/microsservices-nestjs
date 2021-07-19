@@ -8,7 +8,7 @@ export class AwsService {
   constructor(private configService: ConfigService) {}
   public async uploadArquivo(file: any, id: string) {
     const AWS_DATA = {
-      region: this.configService.get<string>('AWS_REGION'),
+      region: this.configService.get<string>('AWS_REGION_NAME'),
       accessKeyId: this.configService.get<string>('AWS_ACCESS_KEY_ID'),
       secretAccessKey: this.configService.get<string>('AWS_SECRET_ACCESS_KEY'),
     };
@@ -19,7 +19,7 @@ export class AwsService {
 
     const urlKey = `${id}.${fileExtension}`;
     this.logger.log(`urlKey: ${urlKey}`);
-
+    console.log(AWS_DATA);
     const params = {
       Body: file.buffer,
       Bucket: this.configService.get<string>('AWS_S3_BUCKET_NAME'),
